@@ -4,4 +4,9 @@
   <string name="hello_world">Hello world!</string>
   <string name="action_settings">Settings</string>
   <string name="receiver_service_label">ReceiverService</string>
+  <string name="title_activity_info">InfoActivity</string>
+  <string name="enable_notification_header">Enable Notifications Access</string>
+  <string name="enable_notification_message">You Need To Enable Notification Permissions In Order To Use These Features.\n\nThis Will Allow App To Access Your Notifications. Your Data Will Not Be Accessed.\n\nTap On Checkbox In notification Access Settings</string>
+  <string name="enable_notifications_label">Enable Notifications</string>
+  <string name="disable_info_message">You Can Turn this Off By Opening \nSettings » Sound &amp; Notifications » Notification Access</string>
 </resources>

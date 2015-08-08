@@ -1,5 +1,6 @@
 package anon.ext.notifications.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -22,6 +23,8 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
 
   @Override
   public void startInfoActivity() {
-
+    Intent intent = new Intent(getApplicationContext(), InfoActivity.class);
+    startActivity(intent);
+    finish();
   }
 }
