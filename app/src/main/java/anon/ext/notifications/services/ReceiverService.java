@@ -7,20 +7,28 @@ import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
 public class ReceiverService extends NotificationListenerService {
-  private static boolean isAttached = false;
+  public static final String RECEIVER_STATUS = ReceiverService.class.getCanonicalName() + ".receiverStatus";
+  private boolean isAttached = false;
   private final String TAG = getClass().getCanonicalName();
+  private Binder binder = new Binder();
 
   public ReceiverService() {
+  }
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
   }
 
   @Override
   public IBinder onBind(Intent intent) {
     Log.e(TAG, "Notification Listener Service Attached");
     isAttached = true;
-    return super.onBind(intent);
+    new SharedPreferenceUtil(getApplicationContext()).put(RECEIVER_STATUS, isAttached);
+    return binder;
   }
 
-  public static boolean isAttached() {
+  public boolean isAttached() {
     return isAttached;
   }
 
@@ -38,6 +46,13 @@ public class ReceiverService extends NotificationListenerService {
   public boolean onUnbind(Intent intent) {
     Log.e(TAG, "Notification Listener Service Detached");
     isAttached = false;
+    new SharedPreferenceUtil(getApplicationContext()).put(RECEIVER_STATUS, isAttached);
     return super.onUnbind(intent);
+  }
+
+  public class Binder extends android.os.Binder {
+    public ReceiverService getService() {
+      return ReceiverService.this;
+    }
   }
 }
